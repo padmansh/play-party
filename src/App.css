@@ -1,0 +1,164 @@
+body {
+  background-color: #238268;
+}
+
+::selection {
+  color: #238268;
+  background: #fcffdf;
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 2px;
+}
+
+.inner-container {
+  margin-top: 7em;
+  text-align: center;
+}
+
+.signup-container {
+  text-align: center;
+}
+
+.input-container {
+  margin: 0.75rem 0.75rem 0.75rem 9rem;
+}
+
+.bg-head {
+  text-transform: uppercase;
+  font-size: 6.25em;
+  font-family: BungeeOutlineRg;
+  color: rgb(252, 255, 223, 0.2);
+  position: fixed;
+  top: 0;
+}
+
+.custom-button {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-family: BungeeInline;
+  background-color: transparent;
+  color: #fcffdf;
+  cursor: pointer;
+  border: 4px solid #fcffdf;
+  padding: 0px 4.5rem;
+  border-radius: 6.25rem;
+  box-shadow: -6px 4px 0 #fcffdf;
+  width: 100%;
+}
+
+.button-text {
+  margin: -1.25rem;
+}
+
+.text {
+  color: #fcffdf;
+  font-family: GTWalsheimProRg;
+  font-size: 1.25em;
+}
+
+.inner-box {
+  background-color: #238268;
+  color: #fcffdf;
+  font-family: BungeeInline;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.75rem;
+  width: 3.75rem;
+  border-radius: 0.75rem;
+  font-size: 2.5rem;
+}
+
+.upi-input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #fcffdf;
+  margin-bottom: 3rem;
+  font-size: 2.25rem;
+  padding: 0.5rem 0rem;
+  color: #fcffdf;
+  font-family: GTWalsheimProRg;
+}
+
+::placeholder {
+  color: #fcffdf;
+  opacity: 0.6;
+}
+
+.upi-input:focus {
+  outline: none;
+}
+
+input {
+  caret-color: #fcffdf;
+}
+
+.end-text {
+  text-transform: uppercase;
+  font-family: BungeeInline;
+  font-size: 3rem;
+  color: #fcffdf;
+}
+
+/* animated-transition */
+
+.slide-enter,
+.slide-exit {
+  transition: transform 1000ms ease-out;
+}
+
+.slide-enter {
+  transform: translateX(100%);
+}
+
+.slide-enter.slide-enter-active {
+  transform: translateX(0%);
+}
+
+.slide-exit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: translateX(0%);
+}
+
+.slide-exit-active {
+  transform: translateX(-100%);
+}
+
+/* slot animation*/
+.slot {
+  height: 170px;
+  width: 170px;
+  position: relative;
+  display: inline-block;
+}
+
+section {
+  width: 8.75rem;
+  height: 8.75rem;
+  background-color: #fcffdf;
+  border: none;
+  border-radius: 0.75rem;
+  text-align: center;
+  margin: 1rem;
+  position: absolute;
+  overflow: hidden;
+}
+
+.slot-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  align-items: center;
+  transition: top ease-in-out 0.5s;
+}
