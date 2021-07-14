@@ -23,14 +23,6 @@ const Spin = () => {
       spinned: true,
       amount: `${slot1}${slot2}${slot3}`,
     });
-    DispatchAmount({
-      type: "IN",
-      data: {
-        ...Data.data,
-        spinned: true,
-        amount: `${slot1}${slot2}${slot3}`,
-      },
-    });
   };
 
   const setTop = (ref, top, i) => {
@@ -52,8 +44,17 @@ const Spin = () => {
     });
     updateSpinAmount();
     setTimeout(() => {
+      DispatchAmount({
+        type: "IN",
+        data: {
+          ...Data.data,
+          spinned: true,
+          amount: `${slot1}${slot2}${slot3}`,
+        },
+      });
       history.push({
-        pathname: "/upi",
+        // pathname: "/upi",
+        pathname: "/",
       });
     }, 4000);
   };

@@ -4,17 +4,26 @@ import SignIn from "./SignIn";
 import Spin from "./Spin";
 import UPI from "./UPI";
 import End from "./End";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { AuthContext } from "./contexts/userContext";
+import { AmountContext } from "./contexts/amountContext";
 
 const App = ({ location }) => {
   const Data = useContext(AuthContext);
+  const Amount = useContext(AmountContext);
 
-  const PrivateRoute = ({ component: Component, data, ...rest }) => (
+  const PrivateRoute = () => (
     <Route
-      {...rest}
-      render={(props) =>
-        Data.token !== "" ? <Component {...props} /> : <Redirect to="/login" />
+      exact
+      path="/"
+      component={
+        Data.token !== ""
+          ? Amount.data.spinned === false
+            ? Spin
+            : Amount.data.upi === ""
+            ? UPI
+            : End
+          : SignIn
       }
     />
   );
@@ -24,10 +33,7 @@ const App = ({ location }) => {
       <div className="bg-head">play to party</div>
       <div className="inner-container">
         <Switch location={location}>
-          <PrivateRoute exact path="/" component={Spin} />
-          <PrivateRoute exact path="/upi" component={UPI} />
-          <PrivateRoute exact path="/end" component={End} />
-          <Route exact path="/login" component={SignIn} />
+          <PrivateRoute />
         </Switch>
       </div>
     </div>

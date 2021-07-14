@@ -29,7 +29,8 @@ const UPI = () => {
         upi: input.upi,
       },
     });
-    history.push("/end");
+    // history.push("/end");
+    history.push("/");
   };
 
   useEffect(() => {
