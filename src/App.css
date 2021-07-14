@@ -7,6 +7,20 @@ body {
   background: #fcffdf;
 }
 
+.custom-button {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-family: BungeeInline;
+  background-color: transparent;
+  color: #fcffdf;
+  cursor: pointer;
+  border: 4px solid #fcffdf;
+  padding: 0px 4.5rem;
+  border-radius: 6.25rem;
+  box-shadow: -6px 4px 0 #fcffdf;
+  width: 100%;
+}
+
 .container {
   height: 100vh;
   width: 100vw;
@@ -36,20 +50,6 @@ body {
   color: rgb(252, 255, 223, 0.2);
   position: fixed;
   top: 0;
-}
-
-.custom-button {
-  text-transform: uppercase;
-  font-size: 2.5rem;
-  font-family: BungeeInline;
-  background-color: transparent;
-  color: #fcffdf;
-  cursor: pointer;
-  border: 4px solid #fcffdf;
-  padding: 0px 4.5rem;
-  border-radius: 6.25rem;
-  box-shadow: -6px 4px 0 #fcffdf;
-  width: 100%;
 }
 
 .button-text {
@@ -160,5 +160,65 @@ section {
   position: absolute;
   width: 100%;
   align-items: center;
-  transition: top ease-in-out 0.5s;
+}
+
+.scroll0 {
+  transform: translateY(0px);
+  transition-duration: 700ms;
+}
+
+.scroll-140 {
+  transform: translateY(-140px);
+  transition-duration: 800ms;
+}
+
+.scroll-280 {
+  transform: translateY(-280px);
+  transition-duration: 900ms;
+}
+
+.scroll-420 {
+  transform: translateY(-420px);
+  transition-duration: 1000ms;
+}
+
+.scroll-560 {
+  transform: translateY(-560px);
+  transition-duration: 1100ms;
+}
+
+.scroll-700 {
+  transform: translateY(-700px);
+  transition-duration: 1300ms;
+}
+
+.scroll-840 {
+  transform: translateY(-840px);
+  transition-duration: 1500ms;
+}
+
+.scroll-980 {
+  transform: translateY(-980px);
+  transition-duration: 1700ms;
+}
+
+.scroll-1120 {
+  transform: translateY(-1120px);
+  transition-duration: 1900ms;
+}
+
+.scroll-1260 {
+  transform: translateY(-1260px);
+  transition-duration: 2100ms;
+}
+
+.delay-0 {
+  transition-delay: 100ms;
+}
+
+.delay-1 {
+  transition-delay: 200ms;
+}
+.delay-2 {
+  transition-delay: 300ms;
 }
