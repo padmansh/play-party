@@ -1,5 +1,4 @@
 import React, { useRef, useContext } from "react";
-import Button from "./Button";
 import Token from "./Token";
 import { useHistory } from "react-router-dom";
 import firebase from "./utils/firebase";
@@ -14,6 +13,7 @@ const Spin = () => {
   let slot3;
   const Data = useContext(AmountContext);
   const DispatchAmount = useContext(DispatchAmountContext);
+  const buttonRef = useRef();
 
   const slotsRef = [useRef(), useRef(), useRef()];
 
@@ -43,6 +43,10 @@ const Spin = () => {
       }
     });
     updateSpinAmount();
+    buttonRef.current.classList.add("hidden");
+    setTimeout(() => {
+      buttonRef.current.classList.add("none");
+    }, 400);
     setTimeout(() => {
       DispatchAmount({
         type: "IN",
@@ -53,10 +57,9 @@ const Spin = () => {
         },
       });
       history.push({
-        // pathname: "/upi",
         pathname: "/",
       });
-    }, 4000);
+    }, 3500);
   };
 
   const triggerSlotRotation = (ref, i) => {
@@ -69,24 +72,29 @@ const Spin = () => {
 
   return (
     <div>
-      {slotsRef.map((ref, id) => (
-        <div className="slot" key={id}>
-          <section>
-            <div className="slot-container" ref={ref}>
-              {(id === 0 ? maxAmt1 : maxAmt2).map((e, i) => (
-                <Token amount={e} key={i} />
-              ))}
-            </div>
-          </section>
-        </div>
-      ))}
-
-      <Button
-        title="spin"
-        style={{ marginTop: "1.50rem", width: "67%" }}
-        onClick={roll}
-      />
-      <p className="text">max 499</p>
+      <div>
+        {slotsRef.map((ref, id) => (
+          <div className="slot" key={id}>
+            <section>
+              <div className="slot-container" ref={ref}>
+                {(id === 0 ? maxAmt1 : maxAmt2).map((e, i) => (
+                  <Token amount={e} key={i} />
+                ))}
+              </div>
+            </section>
+          </div>
+        ))}
+      </div>
+      <div ref={buttonRef}>
+        <button
+          className="custom-button"
+          onClick={roll}
+          style={{ marginTop: "1.50rem", width: "95%" }}
+        >
+          <p className="button-text">Spin</p>
+        </button>
+        <p className="text">max 499</p>
+      </div>
     </div>
   );
 };

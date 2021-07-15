@@ -6,6 +6,8 @@ import "firebase/auth";
 import { useHistory } from "react-router-dom";
 import { DispatchContext } from "./contexts/userContext";
 import { DispatchAmountContext } from "./contexts/amountContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -46,27 +48,36 @@ const SignIn = () => {
       .auth()
       .signInWithPopup(provider)
       .then((res) => {
-        console.log(res);
         const userData = res.additionalUserInfo.profile;
         const token = res.credential.accessToken;
         if (
-          usersList.filter((user) => user.userId === userData.id).length === 0
+          userData.email.indexOf(
+            "@kiet.edu",
+            userData.email.length - "@kiet.edu".length
+          ) !== -1
         ) {
-          createUser(userData);
-          setRefresh(!refresh);
+          if (
+            usersList.filter((user) => user.userId === userData.id).length === 0
+          ) {
+            createUser(userData);
+            setRefresh(!refresh);
+          }
+          Dispatch({
+            type: "IN",
+            token: token,
+          });
+          DispatchAmount({
+            type: "IN",
+            data: usersList.filter((user) => user.userId === userData.id)[0],
+          });
+          setTimeout(() => {
+            history.push("/");
+          }, 200);
+        } else {
+          toast("use KIET email for party!");
         }
-        Dispatch({
-          type: "IN",
-          token: token,
-        });
-        DispatchAmount({
-          type: "IN",
-          data: usersList.filter((user) => user.userId === userData.id)[0],
-        });
-        setTimeout(() => {
-          history.push("/");
-        }, 200);
       })
+
       .catch((error) => {
         console.log(error);
       });
@@ -90,6 +101,7 @@ const SignIn = () => {
     <div className="signup-container">
       <Button title="sign with google" onClick={handleLogin} />
       <p className="text">use your KIET Account to continue</p>
+      <ToastContainer position="top-center" closeOnClick />
     </div>
   );
 };

@@ -33,6 +33,7 @@ body {
 .inner-container {
   margin-top: 7em;
   text-align: center;
+  z-index: 999;
 }
 
 .signup-container {
@@ -44,6 +45,7 @@ body {
 }
 
 .bg-head {
+  text-align: center;
   text-transform: uppercase;
   font-size: 6.25em;
   font-family: BungeeOutlineRg;
@@ -221,4 +223,27 @@ section {
 }
 .delay-2 {
   transition-delay: 300ms;
+}
+
+.Toastify__toast--default {
+  background-color: #fcffdf !important;
+  color: #238268 !important;
+}
+
+.Toastify__progress-bar--default {
+  background: #238268 !important;
+}
+
+.Toastify__close-button--default {
+  margin: auto;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: ease-in-out 600ms;
+}
+
+.none {
+  display: none;
 }
