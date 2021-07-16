@@ -260,7 +260,7 @@ section {
   .custom-button {
     font-size: 24px !important;
     border: 2px solid #fcffdf;
-    padding: 12px 72px !important;
+    padding: 0px 72px !important;
     box-shadow: -3px 2px 0 #fcffdf;
     width: 100%;
   }
@@ -294,5 +294,9 @@ section {
   section {
     width: 6.75rem;
     height: 6.75rem;
+  }
+
+  .button-text {
+    margin: 0px;
   }
 }
