@@ -260,7 +260,7 @@ section {
   .custom-button {
     font-size: 24px !important;
     border: 2px solid #fcffdf;
-    padding: 0px 72px !important;
+    padding: 12px 64px !important;
     box-shadow: -3px 2px 0 #fcffdf;
     width: 100%;
   }
