@@ -276,5 +276,20 @@ section {
 
   .display {
     display: block;
+    padding-right: 10px;
+  }
+
+  .slot-container {
+    margin-top: -15px;
+  }
+
+  .slot {
+    height: 140px;
+    width: 130px;
+  }
+
+  section {
+    width: 6.75rem;
+    height: 6.75rem;
   }
 }
