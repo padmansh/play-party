@@ -53,12 +53,11 @@ body {
   font-family: BungeeOutlineRg;
   color: rgb(252, 255, 223, 0.2);
   position: fixed;
-  top: 0;
-  height: 100%;
+  top: 36px;
 }
 
 .button-text {
-  margin: -1.25rem;
+  margin: 0rem;
 }
 
 .text {
@@ -297,7 +296,7 @@ section {
     height: 6.75rem;
   }
 
-  .button-text {
-    margin: 0px;
+  .bg-head {
+    height: 100%;
   }
 }
