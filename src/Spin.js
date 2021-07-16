@@ -21,7 +21,10 @@ const Spin = () => {
     const user = firebase.database().ref("Party").child(Data.data.id);
     user.update({
       spinned: true,
-      amount: `${slot1}${slot2}${slot3}`,
+      amount:
+        parseInt(`${slot1}${slot2}${slot3}`) > 49
+          ? `${slot1}${slot2}${slot3}`
+          : "049",
     });
   };
 
@@ -53,7 +56,10 @@ const Spin = () => {
         data: {
           ...Data.data,
           spinned: true,
-          amount: `${slot1}${slot2}${slot3}`,
+          amount:
+            parseInt(`${slot1}${slot2}${slot3}`) > 49
+              ? `${slot1}${slot2}${slot3}`
+              : "049",
         },
       });
       history.push({

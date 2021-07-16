@@ -47,7 +47,7 @@ const UPI = () => {
   }, []);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div className="display">
       {arr.map((id) => (
         <div className="slot" key={id}>
           <section>
