@@ -1,11 +1,10 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useEffect, useState } from "react";
 import Token from "./Token";
-import { useHistory } from "react-router-dom";
 import firebase from "./utils/firebase";
 import { DispatchAmountContext, AmountContext } from "./contexts/amountContext";
+import SyncLoader from "react-spinners/SyncLoader";
 
 const Spin = () => {
-  const history = useHistory();
   const maxAmt1 = [0, 1, 2, 3, 4];
   const maxAmt2 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   let slot1;
@@ -14,8 +13,35 @@ const Spin = () => {
   const Data = useContext(AmountContext);
   const DispatchAmount = useContext(DispatchAmountContext);
   const buttonRef = useRef();
+  const [loading, setLoading] = useState(false);
 
   const slotsRef = [useRef(), useRef(), useRef()];
+
+  useEffect(() => {
+    setLoading(true);
+    const userRef = firebase.database().ref("Party");
+    const list = [];
+    userRef.on("value", (snapshot) => {
+      const users = snapshot.val();
+      for (let id in users) {
+        list.push({ id, ...users[id] });
+      }
+      if (
+        list.filter((user) => user.userId === Data.data.userId)[0].spinned !==
+        Data.data.spinned
+      ) {
+        DispatchAmount({
+          type: "IN",
+          data: {
+            ...Data.data,
+            spinned: true,
+          },
+        });
+      }
+      setLoading(false);
+    });
+    //eslint-disable-next-line
+  }, []);
 
   const updateSpinAmount = () => {
     const user = firebase.database().ref("Party").child(Data.data.id);
@@ -46,6 +72,7 @@ const Spin = () => {
       }
     });
     updateSpinAmount();
+
     buttonRef.current.classList.add("hidden");
     setTimeout(() => {
       buttonRef.current.classList.add("none");
@@ -62,9 +89,6 @@ const Spin = () => {
               : "049",
         },
       });
-      history.push({
-        pathname: "/",
-      });
     }, 3500);
   };
 
@@ -78,29 +102,35 @@ const Spin = () => {
 
   return (
     <div>
-      <div>
-        {slotsRef.map((ref, id) => (
-          <div className="slot" key={id}>
-            <section>
-              <div className="slot-container" ref={ref}>
-                {(id === 0 ? maxAmt1 : maxAmt2).map((e, i) => (
-                  <Token amount={e} key={i} />
-                ))}
+      {loading ? (
+        <SyncLoader size={48} margin={12} color={"#fcffdf"} />
+      ) : (
+        <>
+          <div>
+            {slotsRef.map((ref, id) => (
+              <div className="slot" key={id}>
+                <section>
+                  <div className="slot-container" ref={ref}>
+                    {(id === 0 ? maxAmt1 : maxAmt2).map((e, i) => (
+                      <Token amount={e} key={i} />
+                    ))}
+                  </div>
+                </section>
               </div>
-            </section>
+            ))}
           </div>
-        ))}
-      </div>
-      <div ref={buttonRef}>
-        <button
-          className="custom-button"
-          onClick={roll}
-          style={{ marginTop: "1.50rem", width: "95%" }}
-        >
-          <p className="button-text">Spin</p>
-        </button>
-        <p className="text">max 499</p>
-      </div>
+          <div ref={buttonRef}>
+            <button
+              className="custom-button"
+              onClick={roll}
+              style={{ marginTop: "1.50rem", width: "95%" }}
+            >
+              <p className="button-text">Spin</p>
+            </button>
+            <p className="text">max 499</p>
+          </div>
+        </>
+      )}
     </div>
   );
 };
