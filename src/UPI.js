@@ -3,7 +3,7 @@ import Button from "./Button";
 import firebase from "./utils/firebase";
 import Token from "./Token";
 import { AmountContext, DispatchAmountContext } from "./contexts/amountContext";
-import SyncLoader from "react-spinners/SyncLoader";
+import BarLoader from "react-spinners/BarLoader";
 
 const UPI = () => {
   const [input, setInput] = useState("");
@@ -49,7 +49,12 @@ const UPI = () => {
   return (
     <>
       {loading ? (
-        <SyncLoader size={48} margin={12} color={"#fcffdf"} />
+        <BarLoader
+          height={4}
+          color={"#fcffdf"}
+          css={{ display: "inherit" }}
+          width={300}
+        />
       ) : (
         <>
           <div className="display">

@@ -2,7 +2,7 @@ import React, { useRef, useContext, useEffect, useState } from "react";
 import Token from "./Token";
 import firebase from "./utils/firebase";
 import { DispatchAmountContext, AmountContext } from "./contexts/amountContext";
-import SyncLoader from "react-spinners/SyncLoader";
+import BarLoader from "react-spinners/BarLoader";
 
 const Spin = () => {
   const maxAmt1 = [0, 1, 2, 3, 4];
@@ -103,7 +103,12 @@ const Spin = () => {
   return (
     <div>
       {loading ? (
-        <SyncLoader size={48} margin={12} color={"#fcffdf"} />
+        <BarLoader
+          height={4}
+          color={"#fcffdf"}
+          css={{ display: "inherit" }}
+          width={300}
+        />
       ) : (
         <>
           <div>
