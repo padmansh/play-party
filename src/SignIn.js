@@ -50,12 +50,6 @@ const SignIn = () => {
       .then((res) => {
         const userData = res.additionalUserInfo.profile;
         const token = res.credential.accessToken;
-        if (
-          userData.email.indexOf(
-            "@kiet.edu",
-            userData.email.length - "@kiet.edu".length
-          ) !== -1
-        ) {
           if (
             usersList.filter((user) => user.userId === userData.id).length === 0
           ) {
@@ -73,9 +67,6 @@ const SignIn = () => {
           setTimeout(() => {
             history.push("/");
           }, 200);
-        } else {
-          toast("use KIET email for party!");
-        }
       })
 
       .catch((error) => {
@@ -100,7 +91,7 @@ const SignIn = () => {
   return (
     <div className="signup-container">
       <Button title="sign with google" onClick={handleLogin} />
-      <p className="text">use your KIET Account to continue</p>
+      <p className="text">use your GOOGLE Account to continue</p>
       <ToastContainer position="top-center" closeOnClick />
     </div>
   );
