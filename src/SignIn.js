@@ -6,7 +6,7 @@ import "firebase/auth";
 import { useHistory } from "react-router-dom";
 import { DispatchContext } from "./contexts/userContext";
 import { DispatchAmountContext } from "./contexts/amountContext";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const provider = new firebase.auth.GoogleAuthProvider();
